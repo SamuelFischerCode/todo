@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <style>
+        body {
+            text-align: center;
+            background: whitesmoke;
+            margin-top: 5px;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: grey;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="u-full-width">
+        <h3>{{ title }}</h3>
+
+        <form @submit.prevent="addToDo">
+            <label for="newTodo">New ToDo</label>
+            <input v-model="newTodo" type="text" name="newTodo" id="newTodo" value="" placeholder="Your ToDo" />
+            <button type="submit" name="button" class="button-primary">Add</button>
+        </form>
+        <button @click="allDone" type="button" name="button">Mark All Done</button>
+        <ul>
+            <li v-for="todo in todos">
+                <input type="checkbox" v-model="todo.done">
+                <span :class="{ done: todo.done }">{{ todo.value }}</span>
+                <button @click="removeTodo(todo)">🗑</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
